@@ -4,13 +4,9 @@
         <!-- 轮播图 -->
         <banner-com></banner-com>
         <!-- 产品卡片 -->
-        <view>
-            <product-com></product-com>
-            <product-com></product-com>
-            <product-com></product-com>
-            <product-com></product-com>
+        <view class="productCard" v-for="(item, index) in productlist" :key="index">
+            <product-com :item = "item" :categories = "categories"></product-com>
         </view>
-        
     </view>
 </template>
 
@@ -21,6 +17,26 @@ export default {
     components:{
         bannerCom,
         productCom
+    },
+    props:['productlist','categories'],
+    data() {
+        return {
+            product:[],
+        }
+    },
+    onLoad:function(res){
+        console.log(res)
     }
 }
 </script>
+
+<style>
+    .productCard{
+        width: 350rpx;
+        height: 500rpx;
+        margin: 10rpx;
+        background-color: #FFFFFF;
+        display: inline-block;
+        border-radius: 10rpx;
+    }
+</style>
