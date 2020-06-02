@@ -38,7 +38,7 @@
   "dependencies": {
     "@dcloudio/uni-app-plus": "^2.0.0-27820200527001",
     "@dcloudio/uni-h5": "^2.0.0-27820200527001",
-    "@dcloudio/uni-helper-json": "*",
+    "@dcloudio/uni-helper-json": "^1.0.5",
     "@dcloudio/uni-mp-360": "^2.0.0-27820200527001",
     "@dcloudio/uni-mp-alipay": "^2.0.0-27820200527001",
     "@dcloudio/uni-mp-baidu": "^2.0.0-27820200527001",
@@ -49,14 +49,12 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.0-27820200527001",
     "@dcloudio/uni-stat": "^2.0.0-27820200527001",
     "@dcloudio/uni-ui": "^1.2.1",
-    "babel-plugin-import": "^1.13.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "node-sass": "^4.14.1",
     "regenerator-runtime": "^0.12.1",
     "sass-loader": "^8.0.2",
     "uni-request": "^1.0.2",
-    "vant": "^2.8.4",
     "vue": "^2.6.11",
     "vuex": "^3.2.0"
   },
@@ -77,6 +75,7 @@
     "jest": "^25.4.0",
     "mini-types": "*",
     "miniprogram-api-typings": "*",
+    "node-sass": "^4.14.1",
     "postcss-comment": "^2.0.0",
     "vue-template-compiler": "^2.6.11"
   },
@@ -84,9 +83,20 @@
     "Android >= 4",
     "ios >= 8"
   ],
-  "_id": "shopping@0.1.0",
-  "readme": "ERROR: No README data found!",
   "uni-app": {
     "scripts": {}
-  }
+  },
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moxiefxj/shopping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moxiefxj/shopping/issues"
+  },
+  "homepage": "https://github.com/moxiefxj/shopping#readme",
+  "description": ""
 }

@@ -2,11 +2,16 @@ import Vue from 'vue'
 import App from './App'
 import uniRequest from 'uni-request'
 
-Vue.config.productionTip = false
+
 uniRequest.defaults.baseURL = 'http://39.100.241.104:8010/api';
+// 令牌
+// uniRequest.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
-Vue.prototype.$uniRequest = uniRequest;
+uniRequest.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
+
+Vue.config.productionTip = false
+Vue.prototype.$uniRequest = uniRequest
 
 App.mpType = 'app'
 
