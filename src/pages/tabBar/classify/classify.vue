@@ -31,7 +31,7 @@
 		},
 		watch:{
 			active() {
-				console.log(this.active)  // 0
+				console.log (this.active)  // 0
 			}
 		},
 		onShow() {

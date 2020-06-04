@@ -3,13 +3,6 @@
         <!--搜索框  -->
         <uni-search-bar></uni-search-bar>
         <!-- 导航栏 -->
-        <!-- <view class="itemsBar">
-            <view class="itemBar" v-for="(item, index) in itemBar" :key="index">
-                <view @click="classify(item.path)">
-                    {{item.name}}
-                </view>
-            </view>
-        </view> -->
         <ms-tabs :list="itemBar" v-model="active2" itemColor="#03A9F4" lineColor="#03A9F4" >
         </ms-tabs>
         <product-view :productlist = "productlist" :categories = "categories" ></product-view>
@@ -22,7 +15,7 @@
 
 <script>
 import uniSearchBar from '@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar.vue';
-import productView from '../../index/product.vue'
+import productView from '../../index//product/product.vue'
 import msTabs from '@/components/ms_tabs.vue'
 export default {
     components: {uniSearchBar,productView,msTabs},
