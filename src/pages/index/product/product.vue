@@ -19,18 +19,14 @@ export default {
         productCom
     },
     props:['productlist','categories'],
-    data() {
-        return { 
-            product:[],
-        }
-    },
     onLoad:function(res){
         console.log(res)
     },
     methods: {
         detailProduct:function(item){
             console.log(item)
-            let url = '/pages/index/detail/detail?product='+JSON.stringify (item)
+            let url = '/pages/index/detail/detail?product='+JSON.stringify (item) +"&categories="+this.categories
+
             uni.navigateTo({
                 url: url,
                 success: res => {

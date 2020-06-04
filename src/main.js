@@ -9,6 +9,7 @@ uniRequest.defaults.baseURL = 'http://39.100.241.104:8010/api';
 
 uniRequest.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
+Vue.prototype.$imageUrl = "http://39.100.241.104:8010/"
 
 Vue.config.productionTip = false
 Vue.prototype.$uniRequest = uniRequest

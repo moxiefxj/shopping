@@ -2,7 +2,7 @@
     <!-- 商品卡片 -->
     <view class="productCard">
         <!-- 商品图片 -->
-        <image :src="imageUrl + item.cover_img"/>
+        <image :src="item.cover_img"/>
         <view class="productDetail">
             <!-- 商品类别 -->
             <text class="productClass">{{categories}}</text>
@@ -19,20 +19,13 @@
 <script>
 export default {
     props:['item','categories'],
-    data() {
-        return {
-            imageUrl:"http://39.100.241.104:8010/"
-        }
-    },
 }
 </script>
 
-<style>
-    
+<style scoped>
     image{
         width: 350rpx;
         height: 350rpx;
-        border-radius: 10rpx;
     }
     .productDetail{
         padding: 5rpx;
@@ -42,8 +35,5 @@ export default {
         border-radius: 20rpx;
         padding: 0 20rpx;
     }
-    .productPrice{
-        margin: 10rpx;
-        color: red;
-    }
+
 </style>

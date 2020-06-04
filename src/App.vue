@@ -34,4 +34,16 @@
 		);
 		height: 20vh;
 	}
+	image {
+		border-radius: 10rpx;
+	}
+	.productPrice{
+        margin: 10rpx;
+        color: red;
+    }
+	.productClass{
+        background-color: cyan;
+        border-radius: 20rpx;
+        padding: 0 20rpx;
+    }
 </style>

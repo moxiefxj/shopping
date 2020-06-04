@@ -46,13 +46,6 @@ export default {
         this.setProductlist(this.active2) 
     },
 	methods: {
-		classify: function(index){
-            // console.log(index)
-           
-            uni.switchTab({
-                url: "../classify/classify"
-            });
-        },
         setProductlist:function(active2){
             switch (active2) {
                 case 0:
@@ -77,6 +70,11 @@ export default {
                 categories:this.categories
             }).then(res => {
                 this.productlist = res.data.data
+
+                // 修改iamge路径
+                this.productlist.forEach(element => {
+                    element.cover_img = this.$imageUrl + element.cover_img 
+                });
                 // console.log(this.productlist)
             }).catch(res => {
                 console.log(res)
