@@ -5,7 +5,7 @@
         <image :src="item.cover_img"/>
         <view class="productDetail">
             <!-- 商品类别 -->
-            <text class="productClass">{{categories}}</text>
+            <text class="productClass">{{item.categories}}</text>
             <!-- 商品题目 -->
             <text class="title">{{item.name}}</text>
         </view>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    props:['item','categories'],
+    props:['item'],
 }
 </script>
 

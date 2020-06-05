@@ -5,7 +5,7 @@
         <!-- 导航栏 -->
         <ms-tabs :list="itemBar" v-model="active2" itemColor="#03A9F4" lineColor="#03A9F4" >
         </ms-tabs>
-        <product-view :productlist = "productlist" :categories = "categories" ></product-view>
+        <product-view :productlist = "productlist" ></product-view>
         <!-- 内容 -->
         
           
@@ -66,19 +66,35 @@ export default {
                 default:
                     break;
             }
-            this.$uniRequest.post('/Business/BusinessCategories',{
-                categories:this.categories
-            }).then(res => {
-                this.productlist = res.data.data
-
-                // 修改iamge路径
-                this.productlist.forEach(element => {
-                    element.cover_img = this.$imageUrl + element.cover_img 
-                });
-                // console.log(this.productlist)
-            }).catch(res => {
-                console.log(res)
-            })
+            if(this.categories == "all"){
+                this.$uniRequest.get('/Business').then(res => {
+                    this.productlist = res.data.data
+                    // 修改iamge路径
+                    this.productlist.forEach(element => {
+                        element.cover_img = this.$imageUrl + element.cover_img 
+                    });
+                    console.log(this.productlist)
+                }).catch(res => {
+                    console.log(res)
+                })
+            }
+            else{
+                this.$uniRequest.post('/Business/BusinessCategories',{
+                    categories:this.categories
+                }).then(res => {
+                    this.productlist = res.data.data 
+                    // 修改iamge路径
+                    this.productlist.forEach(element => {
+                        element.cover_img = this.$imageUrl + element.cover_img 
+                    });
+                    console.log(this.productlist)
+                }).catch(res => {
+                    console.log(res)
+                })
+            }
+            
+            
+            
         }
     },
     watch: {

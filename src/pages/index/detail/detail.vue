@@ -7,13 +7,14 @@
             <!-- 商品价格 -->
             <view class="productPrice">{{productDetail.price}} </view>
             <!-- 商品类别 -->
-            <text class="productClass">{{categories}}</text>
+            <text class="productClass">{{productDetail.categories}}</text>
             <!-- 商品题目  -->
             <text class="title">{{productDetail.name}}</text>
             <!-- 商品描述 -->
-            <view class="description">{{productDetail.brief}}</view>
+            <view class="description">{{productDetail.describe}}</view>
+
             <!-- 发布时间 -->
-            <view>发布时间:</view>
+            <view>发布时间:{{productDetail.time}}</view>
         </view>
         <!-- 支付与返回 -->
         <view class="pay">
@@ -27,15 +28,25 @@ export default {
     data() {
         return {
             productDetail:[],
-            categories:""
         }
     },
-    onLoad:function(product){
+    onLoad:function(id){
         // 拿到数据
-        let arr = JSON.parse(product.product)
-        this.productDetail = arr
-        this.categories = product.categories
-        console.log(product)
+        console.log(id)
+
+        // 根据id查找数据
+        let reqUrl = "/Business/" + id.id
+        this.$uniRequest.get(reqUrl).then(res => {
+            this.productDetail = res.data
+            console.log(this.productDetail)
+            // 修改iamge路径
+            this.productDetail.cover_img = this.$imageUrl + this.productDetail.cover_img
+            // .forEach(element => {
+            //     element.cover_img = this.$imageUrl + element.cover_img 
+            // });
+        }).catch(res => {
+            console.log(res)
+        })
     }
 }
 </script>
