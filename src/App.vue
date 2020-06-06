@@ -1,17 +1,25 @@
 <script>
+	import {mapMutations} from 'vuex'
 	export default {
+		methods:{
+			...mapMutations(['login'])
+		},
 		onLaunch: function() {
 			console.log('App Launch')
+			let userInfo = uni.getStorageSync('userInfo') || '';
+			if(userInfo.email){
+				// 更新登录状态
+				uni.getStorage({
+					key: 'userInfo',
+					success: (res) => {
+						this.login(res.data)
+					}
+				})
+			}
 			
 		},
 		onShow: function() {
 			console.log(this.$uniRequest)
-			// this.$uniRequest.get('/getCodeKey').then(function(res){
-			// 	console.log(res)
-			// })
-			// .catch(function(error){
-
-			// })
 		},
 		onHide: function() {
 			console.log('App Hide')

@@ -6,7 +6,7 @@
         </view>
         <!-- 第二种   未登录 -->
         <view v-else>
-            <not-login></not-login>
+            <not-login :islogin = "islogin"></not-login>
         </view>
     </view>
 </template>
@@ -21,8 +21,11 @@ export default {
     },
     data() {
         return {
-            islogin :true
+            islogin :this.$store.state.hasLogin
         }
+    },
+    beforeMount() {
+        console.log(this.$store.state.hasLogin)
     },
 }
 </script>

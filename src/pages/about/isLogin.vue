@@ -7,11 +7,6 @@
             <text class="name">hello</text>
         </view>
         <list-com :list = "list" :_handleTap = "_handleTap"></list-com>
-
-        <!-- 退出栏 -->
-        <view>
-            
-        </view>
     </view>
 </template>
 <script>
@@ -54,7 +49,7 @@ export default {
     },
     beforeMount() {
         //判断身份,展示不同的list
-         if(true){
+         if(this.$store.state.userInfo.identity == 1){
              this.list.unshift({
                  title:"产品中心"
              })

@@ -16,7 +16,7 @@
                 <!-- 验证码 小程序不支持转化-->
                 <view class="formItem">
                     <input type="text" v-model="formData.VarCode" placeholder="请输入验证码"/>
-                    <image />
+                    <image :src = "img" class="code_key" @click="getCodeKey"/>
                 </view>
                 <!-- 登陆 -->
                 <view class="formItem">
@@ -33,23 +33,30 @@
 </template>
 
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
+    props:['islogin'],
     data() {
         return {
             formData:{
                 email:"",
                 password:"",
                 VarCode:'',
-                code_key:''
+                code_key:'',
+                captcha_url:""
             },
             emailV:false,
-            pwdV:false
+            pwdV:false,
+            img:""
         }
     },
     beforeMount() {
-        // this.getCodeKey()
+        this.getCodeKey()
+        
     },
     methods:{
+        // 全局方法haslogin
+        ...mapMutations(['login_s']),
         input_email:function(){
             setTimeout(() => {
                 // 判断email格式是否正确
@@ -59,37 +66,70 @@ export default {
         input_pwd:function(){
             setTimeout(() => {
                 // 判断密码格式是否正确
-                this.pwdV = this.formData.password.length <= 16 && this.formData.password.length >6
+                this.pwdV = this.formData.password.length <= 16 && this.formData.password.length >=6
             },300)
         },
         login:function(){
             this.$uniRequest.post('/login',{
-                ...formData
+                ...this.formData
             }).then( res => {
+                // 判断是否登陆成功
+                console.log(res.data.success)
+                if(res.data.success){
+                    uni.showToast({
+                        title: res.data.message,
+                        icon:"success",
+                        duration: 2000
+                    });
+                    // 跳转页面
+                    this.toUser(res.data)
+                }
+                else{
+                    console.log(res.data.message)
+                    // 登录出错
+                    uni.showToast({
+                        title: res.data.message,
+                        icon:"none",
+                        duration: 2000
+                    });
+                }
                 console.log(res)
             }).catch( res => {
                 console.log(res)
             })
         },
-        // getCodeKey:function(){
-        //     this.$uniRequest.get("/getCodeKey").then(res => {
-        //         this.setCaptch(res.data.code_key)
-        //     }).catch(res => {
-        //         console.log(res)
-        //     })
-        // },
-        // setCaptch:function(code_key){
-        //     console.log(code_key)
-        //     this.$uniRequest.post("/setCaptcha",{
-        //         code_key:code_key
-        //     }).then(res => {
-        //         console.log(res)
-        //         let data = res.data 
-        //     }).catch(res => {
-        //         console.log(res)
-        //     })
-        // }
-    }
+        toUser(provide){
+            console.log(this)
+            this.login_s(provide)
+            uni.reLaunch({
+                 url: '/pages/tabBar/about/about'
+            });
+        },
+        getCodeKey:function(){
+            this.$uniRequest.get("/getCodeKey").then(res => {
+                this.formData.code_key = res.data.code_key
+                this.setCaptch(res.data.code_key)
+            }).catch(res => {
+                console.log(res)
+            })
+        },
+        setCaptch:function(code_key){
+            console.log(code_key)
+            this.$uniRequest.post("/setCaptcha_weChat",{
+                code_key:code_key
+            }).then(res => {
+                console.log(res)
+                this.formData.captcha_url = res.data.captcha_url 
+                this.img = this.$imageUrl + res.data.captcha_url 
+            }).catch(res => {
+                console.log(res)
+            })
+        }
+    },
+    computed: {
+        // 全局变量监控
+        ...mapState(['hasLogin'])  
+    },
 }
 </script>
 
@@ -128,5 +168,10 @@ export default {
     }
     .form{
         margin: 30rpx 0;
+    }
+    .code_key{
+        width: 300rpx;
+        height: 80rpx;
+        align-self: center;
     }
 </style>
