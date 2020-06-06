@@ -14,11 +14,11 @@ export default {
         return {
             list:[
                 {
-                    title:"修改密码"
+                    title:"添加产品"
                 },{
-                    title:"修改个人信息"
+                    title:"删除产品"
                 },{
-                    title:"退出"
+                    title:"修改产品"
                 }
             ]
         }
@@ -26,20 +26,23 @@ export default {
     methods:{
         _handleTap:function(title){
             switch (title){
-                case '修改密码':
-                    // 修改密码
+                case '添加产品':
+                    // 添加产品
                     uni.navigateTo({
-                         url: '/pages/about/changePwd/changePwd'
+                         url: '/pages/about/admin/addProduct/addProduct'
                     });
                     break;
-                case '修改个人信息':
-                    // 修改个人信息
+                case '删除产品':
+                    // 删除产品
                      uni.navigateTo({
-                         url: '/pages/about/changeMsg/changeMsg'
+                         url: '/pages/about/admin/delProduct/delProduct'
                     });
                     break;
-                case '退出':
-                    // 退出
+                case '修改产品':
+                    // 修改产品
+                    uni.navigateTo({
+                         url: '/pages/about/admin/modifyProduct/modifyProduct'
+                    });
                     break;
                 default:
                     break;

@@ -40,6 +40,26 @@
 			"style":{
 				"navigationBarTitleText":"修改密码"
 			}
+		},{
+			"path":"pages/about/adminproduct/adminproduct",
+			"style":{
+				"navigationBarTitleText":"产品中心"
+			}
+		},{
+			"path":"pages/about/admin/addProduct/addProduct",
+			"style":{
+				"navigationBarTitleText":"添加产品"
+			}
+		},{
+			"path":"pages/about/admin/delProduct/delProduct",
+			"style":{
+				"navigationBarTitleText":"删除产品"
+			}
+		},{
+			"path":"pages/about/admin/modifyProduct/modifyProduct",
+			"style":{
+				"navigationBarTitleText":"修改产品"
+			}
 		}
 
 	],

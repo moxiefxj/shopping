@@ -1,5 +1,7 @@
 <template>
     <view>
-        修改密码
+        改密
+      
     </view>
 </template>
+

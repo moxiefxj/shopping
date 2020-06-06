@@ -6,11 +6,7 @@
             <!-- name -->
             <text class="name">hello</text>
         </view>
-        <uni-list>
-            <!-- 订单信息栏-->
-            <uni-list-item title="我的订单" @click="toOrderList"></uni-list-item>
-            <uni-list-item title="设置" @click="toSettings"></uni-list-item>
-        </uni-list>
+        <list-com :list = "list" :_handleTap = "_handleTap"></list-com>
 
         <!-- 退出栏 -->
         <view>
@@ -19,23 +15,51 @@
     </view>
 </template>
 <script>
-import uniList from "@dcloudio/uni-ui/lib/uni-list/uni-list.vue"
-import uniListItem from "@dcloudio/uni-ui/lib/uni-list-item/uni-list-item.vue"
+import listCom from '../../components/listCom'
 export default {
-    components: {uniList,uniListItem},
-    methods:{
-        toOrderList:function(){
-            console.log("点击了")
-            uni.navigateTo({
-                 url: '/pages/about/orderList/orderList'
-            });
-        },
-        toSettings:function(){
-            uni.navigateTo({
-                 url: '/pages/about/settings/settings'
-            });
+    components: {listCom},
+    data() {
+        return {
+            list:[
+                {
+                    title:"我的订单"
+                },{
+                    title:"设置"
+                }
+            ]
         }
-    }
+    },
+    methods:{
+        _handleTap:function(title){
+            switch (title){
+                case "产品中心":
+                    uni.navigateTo({
+                        url: '/pages/about/adminproduct/adminproduct'
+                    }); 
+                    break
+                case "我的订单":
+                   uni.navigateTo({
+                        url: '/pages/about/orderList/orderList'
+                    }); 
+                    break
+                case "设置":
+                    uni.navigateTo({
+                        url: '/pages/about/settings/settings'
+                    });
+                    break
+                default:
+                    break
+            }
+        }
+    },
+    beforeMount() {
+        //判断身份,展示不同的list
+         if(true){
+             this.list.unshift({
+                 title:"产品中心"
+             })
+         }
+    },
 }
 </script>
 
