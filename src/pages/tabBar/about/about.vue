@@ -21,11 +21,9 @@ export default {
     },
     data() {
         return {
-            islogin :this.$store.state.hasLogin
+            // islogin :this.$store.state.hasLogin
+            islogin:false
         }
-    },
-    beforeMount() {
-        console.log(this.$store.state.hasLogin)
-    },
+    }
 }
 </script>

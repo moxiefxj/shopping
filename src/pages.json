@@ -60,6 +60,26 @@
 			"style":{
 				"navigationBarTitleText":"修改产品"
 			}
+		},{
+			"path":"pages/about/adminAbout/adminAbout",
+			"style":{
+				"navigationBarTitleText":"关于我们"
+			}
+		},{
+			"path":"pages/about/admin/modifyContact/modifyContact",
+			"style":{
+				"navigationBarTitleText":"修改联系方式"
+			}
+		},{
+			"path":"pages/about/admin/modifyBrief/modifyBrief",
+			"style":{
+				"navigationBarTitleText":"修改产品"
+			}
+		},{
+			"path":"pages/about/register",
+			"style":{
+				"navigationBarTitleText":"注册"
+			}
 		}
 
 	],

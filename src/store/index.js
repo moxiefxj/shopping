@@ -10,7 +10,6 @@ const store = new Vuex.Store({
     },
     mutations: {
         login_s(state, provider) {
-            console.log("login" + this)
             state.hasLogin = true
             state.userInfo = provider 
         
@@ -18,7 +17,6 @@ const store = new Vuex.Store({
                 key: 'userInfo',
                 data: provider
             })
-            console.log(state.userInfo)
         },
         logout(state) {
             state.hasLogin = false

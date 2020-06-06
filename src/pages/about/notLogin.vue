@@ -2,7 +2,7 @@
     <view>
         <image class="header"/>
         <view class="loginPane">
-            <form class="form" @submit="formSubmit">
+            <form class="form">
                 <!-- email -->
                 <view class="formItem">
                     <input type="text" v-model="formData.email" @input="input_email" placeholder="请输入email"/>
@@ -23,9 +23,9 @@
                     <button class="btn_login" type="primary" :disabled="!(pwdV&&emailV)" @click="login">登录</button>
                 </view>
                 <!-- 忘记密码/注册 -->
-                <view class="formItem">
-                    <text>忘记密码</text>
-                    <text>注册</text>
+                <view class="formItem" >
+                    <text class="forgetPwd" @click="toModifyPwd">忘记密码</text>
+                    <text class="register" @click="toRegister">注册</text>
                 </view>
             </form>
         </view>
@@ -124,6 +124,16 @@ export default {
             }).catch(res => {
                 console.log(res)
             })
+        },
+        toRegister(){
+            uni.navigateTo({
+                url: '/pages/about/register'
+            });
+        },
+        toModifyPwd(){
+            uni.navigateTo({
+                url: '/pages/about/changePwd/changePwd'
+            });
         }
     },
     computed: {
@@ -173,5 +183,8 @@ export default {
         width: 300rpx;
         height: 80rpx;
         align-self: center;
+    }
+    .forgetPwd{
+        margin-right: 20rpx;
     }
 </style>

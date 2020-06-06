@@ -63,4 +63,12 @@
         border-radius: 20rpx;
         padding: 0 20rpx;
     }
+	.productCard{
+        width: 350rpx;
+        height: 500rpx;
+        margin: 10rpx;
+        background-color: #FFFFFF;
+        display: inline-block;
+        border-radius: 10rpx;
+    }
 </style>

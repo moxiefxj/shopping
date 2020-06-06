@@ -32,6 +32,11 @@ export default {
                         url: '/pages/about/adminproduct/adminproduct'
                     }); 
                     break
+                case "关于我们":
+                    uni.navigateTo({
+                        url: '/pages/about/adminAbout/adminAbout'
+                    }); 
+                    break
                 case "我的订单":
                    uni.navigateTo({
                         url: '/pages/about/orderList/orderList'
@@ -49,9 +54,16 @@ export default {
     },
     beforeMount() {
         //判断身份,展示不同的list
-         if(this.$store.state.userInfo.identity == 1){
+        //  if(this.$store.state.userInfo.identity == 1){
+        //      this.list.unshift({
+        //          title:"产品中心"
+        //      })
+        //  }
+        if(true){
              this.list.unshift({
                  title:"产品中心"
+             },{
+                 title:"关于我们"
              })
          }
     },

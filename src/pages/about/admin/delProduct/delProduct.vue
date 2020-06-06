@@ -1,26 +1,41 @@
 <template>
     <view>
-        <delproduct-com :productList = "productList"></delproduct-com>
+        <view class="productCard" v-for = "(item,index) in productList" :key="index"> 
+            <product-com :item = "item" ></product-com>
+            <view :disabled = "isable">hahha</view>
+        </view>
+        
     </view>
 </template>
 
 <script>
-import delproductCom from "../../../../components/delproductCom"
+import productCom from "../../../../components/productCom"
 export default {
     components:{
-        delproductCom
+        productCom
     },
     data() {
         return {
-            productList:[]
+            productList:[],
+            isable : false
         }
     },
     beforeMount() {
         this.$uniRequest.get('/Business').then( res => {
             this.productList = res.data.data
+            // 修改iamge路径
+            this.productList.forEach(element => {
+                element.cover_img = this.$imageUrl + element.cover_img 
+            });
         }).catch( res => {
 
         })
     },
+    methods:{
+    }
 }
 </script>
+
+<style>
+
+</style>
