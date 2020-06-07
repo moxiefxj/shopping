@@ -59,15 +59,33 @@ export default {
             this.$uniRequest.post('/Pay',{
                 ...this.payData
             }).then( res => {
-                console.log(res)
-                uni.showToast({
-                    title: res.data.message,
-                    duration: 2000
-                });
+                if(res.status == 401){
+                    uni.showToast({
+                        title: "登录过期！请重新登录",
+                        icon:"none",
+                        duration: 2000
+                    });
+                    setTimeout( () =>{
+                        getApp().logoutM()
+                    },300) 
+                }
+                else if( res.data.success){
+                    uni.showToast({
+                        title: "购买成功",
+                        duration: 2000
+                    });
+                    // 跳转首页
+                    setTimeout( () => {
+                        uni.switchTab({
+                            url: '/pages/tabBar/index/index'
+                        });
+                    },600)
+                    
+                }
             }).catch( res =>{
                 console.log(res)
             })
-        }
+        },
     }
 }
 </script>

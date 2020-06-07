@@ -7,13 +7,12 @@ const store = new Vuex.Store({
     state :{
         hasLogin: false,
         userInfo: {},
-        token:""
     },
     mutations: {
         login_s(state, provider) {
             state.hasLogin = true
             state.userInfo = provider 
-        
+            
             uni.setStorage({
                 key: 'userInfo',
                 data: provider

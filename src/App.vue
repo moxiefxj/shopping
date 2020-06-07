@@ -2,13 +2,20 @@
 	import {mapMutations} from 'vuex'
 	export default {
 		methods:{
-			...mapMutations(['login_s'])
+			...mapMutations(['login_s','logout']),
+			logoutM(){
+				this.logout()
+				setTimeout( () => {
+					uni.reLaunch({
+						url: '/pages/tabBar/about/about'
+					});
+				},2000)   
+			}
 		},
 		onLaunch: function() {
 			console.log('App Launch')
 			let userInfo = uni.getStorageSync('userInfo') || '';
 			if(userInfo.email){
-				console.log("刷新进入")
 				// 更新登录状态
 				uni.getStorage({
 					key: 'userInfo',
@@ -17,8 +24,6 @@
 						this.login_s(res.data)
 					}
 				})
-			}else{
-				console.log("刷新未进入")
 			}
 			
 		},

@@ -100,6 +100,8 @@ export default {
         },
         toUser(provide){
             console.log(this)
+            provide.token = "Bearer "+provide.token
+            this.$uniRequest.defaults.headers.common['Authorization'] = provide.token
             this.login_s(provide)
             uni.reLaunch({
                  url: '/pages/tabBar/about/about'

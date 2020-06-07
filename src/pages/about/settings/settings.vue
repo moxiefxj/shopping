@@ -42,7 +42,13 @@ export default {
                     break;
                 case '退出':
                     // 退出
-                    this.logoutM()
+                    uni.showToast({
+                        title: '注销成功',
+                        duration: 2000
+                    });
+                    setTimeout( () =>{
+                        getApp().logoutM()
+                    },300) 
                     break;
                 default:
                     break;
@@ -50,17 +56,6 @@ export default {
 
             
         },
-        logoutM(){
-            this.logout()
-            uni.showToast({
-                title: '注销成功',
-                duration: 2000
-            });
-
-            uni.reLaunch({
-                url: '/pages/tabBar/about/about'
-            });
-        }
     }
 }
 </script>
