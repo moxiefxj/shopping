@@ -6,6 +6,7 @@
 
 <script>
 import listCom from '../../../components/listCom'
+import {mapMutations} from 'vuex'
 export default {
     components:{
         listCom
@@ -24,6 +25,7 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['logout']),
         _handleTap:function(title){
             switch (title){
                 case '修改密码':
@@ -40,12 +42,24 @@ export default {
                     break;
                 case '退出':
                     // 退出
+                    this.logoutM()
                     break;
                 default:
                     break;
             }
 
             
+        },
+        logoutM(){
+            this.logout()
+            uni.showToast({
+                title: '注销成功',
+                duration: 2000
+            });
+
+            uni.reLaunch({
+                url: '/pages/tabBar/about/about'
+            });
         }
     }
 }

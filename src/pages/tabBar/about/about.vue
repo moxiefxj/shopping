@@ -21,8 +21,8 @@ export default {
     },
     data() {
         return {
-            // islogin :this.$store.state.hasLogin
-            islogin:false
+            islogin :this.$store.state.hasLogin
+            // islogin:false
         }
     }
 }

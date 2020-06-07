@@ -23,6 +23,10 @@
                     <input type="text" v-model="formRegisterData.tel" placeholder="请输入手机号" @input="input_tel"/>
                     <icon :type="telV ? 'success':'warn'"></icon>
                 </view>
+                <view class="formItem">
+                    <input type="text" v-model="formRegisterData.VarCode" placeholder="请输入验证码" @input="input_tel"/>
+                    <button type="primary" class="code" @click="getCode">获取验证码</button>
+                </view>
                 <!-- 注册 -->
                 <view class="formItem">
                     <button class="btn_resjister" type="primary" :disabled="!(pwdV&&emailV&&nameV&&telV)" @click="register">注册</button>
@@ -40,7 +44,8 @@ export default {
                 email:"",
                 password:"",
                 name:"",
-                tel:""
+                tel:"",
+                VarCode:''
             },
             emailV:false,
             pwdV:false,
@@ -74,6 +79,7 @@ export default {
             },300)
         },
         register:function(){
+            console.log(this.formRegisterData)
             this.$uniRequest.post('/register',{
                 ...this.formRegisterData
             }).then( res => {
@@ -83,7 +89,10 @@ export default {
                         icon:"success",
                         duration: 2000
                     });
-                    uni.navigateBack()
+                    // 跳转登录界面
+                    uni.reLaunch({
+                         url: '/pages/tabBar/about/about'
+                    });
                 }else{
                     uni.showToast({
                         title: res.data.message,
@@ -92,33 +101,24 @@ export default {
                     });
                 }
             })
-            // this.$uniRequest.post('/register',{
-            //     ...this.formRegisterData
-            // }).then( res => {
-            //     // 判断是否登陆成功
-            //     console.log(res.data.success)
-            //     if(res.data.success){
-            //         uni.showToast({
-            //             title: res.data.message,
-            //             icon:"success",
-            //             duration: 2000
-            //         });
-            //         // 跳转页面
-            //         this.toUser(res.data)
-            //     }
-            //     else{
-            //         console.log(res.data.message)
-            //         // 登录出错
-            //         uni.showToast({
-            //             title: res.data.message,
-            //             icon:"none",
-            //             duration: 2000
-            //         });
-            //     }
-            //     console.log(res)
-            // }).catch( res => {
-            //     console.log(res)
-            // })
+                    
+        },
+        getCode:function(){
+            if(this.emailV){
+                this.$uniRequest.post('/VarCodeSend',{
+                    email:this.formRegisterData.email
+                }).then( res => {
+                    console.log(res)
+                }).catch( res => {
+                    console.log(res)
+                })
+            }else{
+                uni.showToast({
+                    title: 'email输入有误',
+                    duration: 2000,
+                    icon:'none'
+                });
+            }
         }
     },
 }
@@ -135,7 +135,7 @@ export default {
     }
     .registerPane{
         width: 600rpx;
-        height: 600rpx;
+        height: 700rpx;
         background-color: darkkhaki;
         margin: 0 auto;
         padding: 50rpx 0;
@@ -160,9 +160,12 @@ export default {
     .form{
         margin: 30rpx 0;
     }
-    .code_key{
-        width: 300rpx;
+    .code{
+        width: 400rpx;
         height: 80rpx;
         align-self: center;
+        margin-left: 20rpx;
+        font-size: 30rpx;
     }
+
 </style>

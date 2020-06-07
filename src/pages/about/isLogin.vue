@@ -54,18 +54,20 @@ export default {
     },
     beforeMount() {
         //判断身份,展示不同的list
-        //  if(this.$store.state.userInfo.identity == 1){
-        //      this.list.unshift({
-        //          title:"产品中心"
-        //      })
-        //  }
-        if(true){
+         if(this.$store.state.userInfo.identity == 1){
              this.list.unshift({
                  title:"产品中心"
              },{
                  title:"关于我们"
              })
          }
+        // if(true){
+        //      this.list.unshift({
+        //          title:"产品中心"
+        //      },{
+        //          title:"关于我们"
+        //      })
+        //  }
     },
 }
 </script>
