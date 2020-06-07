@@ -1,16 +1,26 @@
 <template>
     <view class="listItem">
-        <image />
-        <view class="title_time">
-            <view>title</view>
-            <view>时间</view>
+        <image :src="item.cover_img"/>
+        <view class="name_time">
+            <view class="name">{{item.name}}</view>
+            <view class="time">{{item.time}}</view>
         </view>
+        <button class="del" type="warn" @click="order_del(item.order_id)">删除</button>
     </view>
 </template>
 
-<style>
+<script>
+export default {
+    props:['item','order_del'],
+    created(){
+        console.log(this.item)
+    }
+}
+</script>
+
+<style scoped>
     .listItem{
-        background-color: darkgreen;
+        background-color: rosybrown;
         height: 200rpx;
         margin: 20rpx;
         display: flex;
@@ -22,7 +32,19 @@
         margin-left: 20rpx;
         align-self: center;
     }
-    .title_time{
-        margin: 0rpx;
+    .name_time{
+        margin: 20rpx 30rpx;
+    }
+    .name{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .time{
+    }
+    .del{
+        width: 128rpx;
+        height: 80rpx;
+        font-size: 30rpx;
+        align-self: center;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="changePane">
+        <view class="changePwdPane">
             <form class="form">
                 <!-- email -->
                 <view class="formItem">
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style>
-    .changePane{
+    .changePwdPane{
         width: 600rpx;
         height: 700rpx;
         background-color: darkkhaki;

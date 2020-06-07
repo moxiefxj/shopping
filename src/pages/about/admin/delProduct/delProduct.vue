@@ -1,18 +1,17 @@
 <template>
     <view>
-        <view class="productCard" v-for = "(item,index) in productList" :key="index"> 
-            <product-com :item = "item" ></product-com>
-            <view :disabled = "isable">hahha</view>
+        <view v-for = "(item,index) in productList" :key="index"> 
+            <order-com :item="item"></order-com>
         </view>
         
     </view>
 </template>
 
 <script>
-import productCom from "../../../../components/productCom"
+import orderCom from "../../../../components/orderCom"
 export default {
     components:{
-        productCom
+        orderCom
     },
     data() {
         return {
