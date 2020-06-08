@@ -65,8 +65,11 @@ export default {
                         icon:"none",
                         duration: 2000
                     });
-                    setTimeout( () =>{
-                        getApp().logoutM()
+                    this.$store._mutations.logout[0]()
+                    setTimeout( () => {
+                        uni.reLaunch({
+                            url: '/pages/tabBar/about/about'
+                        });
                     },300) 
                 }
                 else if( res.data.success){

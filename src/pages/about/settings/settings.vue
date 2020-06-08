@@ -46,9 +46,14 @@ export default {
                         title: '注销成功',
                         duration: 2000
                     });
-                    setTimeout( () =>{
-                        getApp().logoutM()
-                    },300) 
+                    // console.log(this.$store._mutations.logout[0])
+                    // this.logout()
+                    this.$store._mutations.logout[0]()
+                    setTimeout( () => {
+                        uni.reLaunch({
+                            url: '/pages/tabBar/about/about'
+                        });
+                    },300)
                     break;
                 default:
                     break;

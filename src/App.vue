@@ -2,15 +2,7 @@
 	import {mapMutations} from 'vuex'
 	export default {
 		methods:{
-			...mapMutations(['login_s','logout']),
-			logoutM(){
-				this.logout()
-				setTimeout( () => {
-					uni.reLaunch({
-						url: '/pages/tabBar/about/about'
-					});
-				},2000)   
-			}
+			...mapMutations(['login_s'])
 		},
 		onLaunch: function() {
 			console.log('App Launch')
