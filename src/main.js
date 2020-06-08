@@ -7,8 +7,6 @@ import store from './store'
 uniRequest.defaults.baseURL = 'http://39.100.241.104:8010/api';
 
 var userInfo = uni.getStorageSync('userInfo') || "";
-console.log(userInfo)
-console.log(userInfo.token)
 if(userInfo.success){
   uniRequest.defaults.headers.common['Authorization'] = userInfo.token
 }
