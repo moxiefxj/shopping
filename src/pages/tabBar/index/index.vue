@@ -45,6 +45,7 @@ export default {
             categories:"",
             screenHeight:0,
             isLoading:false,
+            height:0,
             bottomDistinct:200, //距离底部多少像素触发
             next_page_url:'',
         }
@@ -122,33 +123,36 @@ export default {
 
             // 为listArea 节点绑定查询请求
             query.select("#listArea").boundingClientRect(data => {
-                let height = data.height;
-                if(this.bottomDistinct >= height - this.screenHeight - scrollTop){
+                let height_t = data.height;
+                if(this.bottomDistinct >= this.height - this.screenHeight - scrollTop && this.height != height_t){
                     this.isLoading = true
-                    setTimeout(()=>{
-                        if(this.next_page_url == null){
-                            uni.showToast({
-                                title: '没有更多啦',
-                                duration: 1000,
-                                icon:"none"
-                            });
-                        }else{
-                            // 获取下一页数据
-                            this.$uniRequest.get(this.next_page_url).then( res => {
-                                // console.log(res)
-                                this.next_page_url = res.data.next_page_url
-                                res.data.data.forEach(element => {
-                                    element.cover_img = this.$imageUrl + element.cover_img 
-                                });
-                                this.productlist = this.productlist.concat(res.data.data)
-                            }).catch( res => {
-                                console.log(res)
-                            })
-                        }
-                        this.isLoading = false
-                    },300);
-                }
+                    this.height = height_t
+                    setTimeout( ()=>{
+                    if(this.next_page_url == null){
+                        uni.showToast({
+                            title: '没有更多啦',
+                            duration: 1000,
+                            icon:"none"
+                        });
+                    }else{
+                        this.getLastPage() 
+                    }
+                    this.isLoading = false  
+                        },1000) 
+                } 
             }).exec();
+        },
+        getLastPage:function(){
+            this.$uniRequest.get(this.next_page_url).then( res => {
+                this.next_page_url = res.data.next_page_url
+                res.data.data.forEach(element => {
+                    element.cover_img = this.$imageUrl + element.cover_img 
+                });
+                this.productlist = this.productlist.concat(res.data.data)
+                
+            }).catch( res => {
+                console.log(res)
+            })  
         },
         search:function(e){
             this.$uniRequest.post('/BusinessSearch',{
