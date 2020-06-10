@@ -2,7 +2,7 @@
     <!-- 主页产品页 -->
     <view>
         <!-- 轮播图 -->
-        <banner-com></banner-com>
+        <banner-com v-show="!isSearch"></banner-com>
         <!-- 产品卡片 -->
         <view class="productCard" v-for="(item, index) in productlist" :key="index"  @tap="detailProduct(item.id)">
             <product-com :item = "item"></product-com>
@@ -18,8 +18,9 @@ export default {
         bannerCom,
         productCom
     },
-    props:['productlist'],
+    props:['productlist','isSearch'],
     onLoad:function(res){
+        // 在搜索页不显示轮播图
         console.log(res)
     },
     methods: {

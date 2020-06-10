@@ -1,12 +1,12 @@
 <template>
-    <view class="pages">
+    <view >
         <!--搜索框  -->
         <uni-search-bar @confirm="search"></uni-search-bar>
         <!-- 导航栏 -->
         <ms-tabs :list="itemBar" v-model="active2" itemColor="#03A9F4" lineColor="#03A9F4" >
         </ms-tabs>
         <view id = "listArea">
-            <product-view :productlist = "productlist" ></product-view>
+            <product-view :productlist = "productlist" :isSearch = "isSearch"></product-view>
         </view>
         
         <!-- 内容 -->
@@ -41,6 +41,7 @@ export default {
                 }
             ],
             active2:0,
+            isSearch:false,
             productlist:[],
             categories:"",
             screenHeight:0,
@@ -81,6 +82,7 @@ export default {
                 this.$uniRequest.get('/Business').then(res => {
                     this.productlist = res.data.data
                     this.next_page_url = res.data.next_page_url
+                    this.isSearch = false
                     // 修改iamge路径
                     this.productlist.forEach(element => {
                         element.cover_img = this.$imageUrl + element.cover_img 
@@ -96,6 +98,7 @@ export default {
                 }).then(res => {
                     this.productlist = res.data.data 
                     this.next_page_url = res.data.next_page_url
+                    this.isSearch = false
                     // 修改iamge路径
                     this.productlist.forEach(element => {
                         element.cover_img = this.$imageUrl + element.cover_img 
@@ -160,6 +163,13 @@ export default {
             }).then( res => {
                 console.log("搜索结果：")
                 console.log(res)
+                this.productlist = res.data.data 
+                this.next_page_url = res.data.next_page_url
+                this.isSearch = true
+                // 修改iamge路径
+                this.productlist.forEach(element => {
+                    element.cover_img = this.$imageUrl + element.cover_img 
+                });
             })
         }   
 
