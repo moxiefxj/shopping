@@ -3,17 +3,23 @@
 		{
 			"path":"pages/tabBar/index/index",
 			"style":{
-				"navigationBarTitleText":"主页"
-			}
-		},{
-			"path":"pages/tabBar/classify/classify",
-			"style":{
-				"navigationBarTitleText":"分类"
+				"navigationBarTitleText":"主页",
+				"enablePullDownRefresh": true,
+				"usingComponents":{
+					"van-search": "/wxcomponents/vant/dist/search/index",
+					"van-tab": "/wxcomponents/vant/dist/tab/index",
+					"van-tabs": "/wxcomponents/vant/dist/tabs/index"
+				}
 			}
 		},{
 			"path":"pages/tabBar/about/about",
 			"style":{
 				"navigationBarTitleText":"我的"
+			}
+		},{
+			"path":"pages/index/product/search",
+			"style":{
+				"navigationBarTitleText":"搜索页"
 			}
 		},{
 			"path":"pages/index/detail/detail",
@@ -28,7 +34,12 @@
 		},{
 			"path":"pages/about/orderList/orderList",
 			"style":{
-				"navigationBarTitleText":"订单列表"
+				"navigationBarTitleText":"订单列表",
+				"usingComponents":{
+					"van-card": "/wxcomponents/vant/dist/card/index",
+					"van-button": "/wxcomponents/vant/dist/button/index",
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
 			}
 		},{
 			"path":"pages/about/changeMsg/changeMsg",
@@ -91,7 +102,7 @@
 	},
 	"tabBar": {
 		"color": "#7A7E83",
-		"selectedColor": "#007AFF",
+		"selectedColor": "#4fc08d",
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [
@@ -100,12 +111,6 @@
 				"text": "首页",
 				"iconPath": "./static/tabBar/index.png",
 				"selectedIconPath": "./static/tabBar/index_selected.png"
-			},
-			{
-				"pagePath": "pages/tabBar/classify/classify",
-				"text": "分类",
-				"iconPath": "./static/tabBar/classify.png",
-				"selectedIconPath": "./static/tabBar/classify_selected.png"
 			},
 			{
 				"pagePath": "pages/tabBar/about/about",

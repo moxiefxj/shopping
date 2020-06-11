@@ -101,7 +101,7 @@ export default {
     .changeContactPane{
         width: 600rpx;
         height: 700rpx;
-        background-color: darkkhaki;
+        background-color: #4fc08d;
         margin: 200rpx auto;
         padding: 50rpx 0;
         border-radius: 20rpx;
@@ -115,7 +115,7 @@ export default {
         width: 100%;
         height: 80rpx;
         border-radius: 20rpx;
-        border:2rpx solid green;
+        border:2rpx solid #FBE9E7;
         align-self: center;
         padding-left: 20rpx;
     }

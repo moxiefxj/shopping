@@ -1,12 +1,10 @@
 <template>
     <view v-if="hasOrder">
-        <view id="listOrder" v-for="(item,index) in orderlist" :key="index" @click="toProduct(item.business_id)">
-            <order-com :item="item" :order_del = "order_del" ></order-com>
+        <view id="listOrder" v-for="(item,index) in orderlist" :key="index">
+            <order-com :item="item" :order_del = "order_del" :toProduct="toProduct"></order-com>
         </view>
-        
     </view>
     <view v-else>
-        <!-- 没有订单 -->
         <text>没有订单</text>
     </view>
 </template>
@@ -63,10 +61,13 @@ export default {
                     title: res.data.message,
                     duration: 2000
                 });
-                // 重定向到订单页
+                setTimeout( () => {
+                    // 重定向到订单页
                 uni.redirectTo({
                      url: '/pages/about/orderList/orderList'
                 });
+                },300)
+                
             }).catch( res => {
                 console.log(res)
             })
@@ -137,3 +138,14 @@ export default {
     }
 }
 </script>
+
+<style >
+    .goods-card {
+    margin: 0;
+    background-color: white;
+  }
+
+  .delete-button {
+    height: 100%;
+  }
+</style>

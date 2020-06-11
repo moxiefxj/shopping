@@ -1,6 +1,5 @@
 <template>
     <view>
-        <image class="header"/>
         <view class="loginPane">
             <form class="form">
                 <!-- email -->
@@ -35,7 +34,6 @@
 <script>
 import {mapState,mapMutations} from 'vuex'
 export default {
-    props:['islogin'],
     data() {
         return {
             formData:{
@@ -103,6 +101,7 @@ export default {
             provide.token = "Bearer "+provide.token
             this.$uniRequest.defaults.headers.common['Authorization'] = provide.token
             this.login_s(provide)
+            console.log(this.$store.state.hasLogin)
             uni.reLaunch({
                  url: '/pages/tabBar/about/about'
             });
@@ -146,19 +145,11 @@ export default {
 </script>
 
 <style>
-    .header{
-        background-color: darkgreen;
-        width: 200rpx;
-        height: 200rpx;
-        border-radius: 100%;
-        display: block;
-        margin: 50rpx auto;
-    }
     .loginPane{
         width: 600rpx;
         height: 600rpx;
-        background-color: darkkhaki;
-        margin: 0 auto;
+        background-color: #4fc08d;
+        margin: 260rpx auto;
         padding: 50rpx 0;
         border-radius: 20rpx;
     }

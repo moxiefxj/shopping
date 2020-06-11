@@ -1,10 +1,8 @@
 <template>
     <view> 
-        <view class="P_I">
-            <!-- 头像 -->
-            <image class="image"/>
+        <view class="user">
             <!-- name -->
-            <text class="name">hello</text>
+            <text class="name">欢迎回来,{{user.name}}!</text>
         </view>
         <list-com :list = "list" :_handleTap = "_handleTap"></list-com>
     </view>
@@ -21,7 +19,8 @@ export default {
                 },{
                     title:"设置"
                 }
-            ]
+            ],
+            user:[]
         }
     },
     methods:{
@@ -53,6 +52,8 @@ export default {
         }
     },
     beforeMount() {
+        this.user = this.$store.state.userInfo
+        console.log(this.user)
         //判断身份,展示不同的list
          if(this.$store.state.userInfo.identity == 1){
              this.list.unshift({
@@ -73,23 +74,17 @@ export default {
 </script>
 
 <style>
-.P_I{
-    background-color: indigo;
-    display: flex;
-}
-    .image{
-        width: 150rpx;
-        height: 150rpx;
-        border-radius: 100%;
-        background-color: green;
-        margin: 30rpx;
+    .user{
+        background-color: #4fc08d;
+        display: flex;
     }
     .name{
-        background-color: hotpink;
         padding: 20rpx;
         width: 300rpx;
-        height: 50rpx;
+        margin: 0 auto;
+        text-align: center;
         align-self: center;
+        font-size: 30rpx;
+        font-weight: bold;
     }
-
 </style>

@@ -8,15 +8,26 @@
             autoplay
             interval="3000"
             circular>
-            <swiper-item>
-                <view class="swiper-item uni-bg-red">A</view>
-            </swiper-item>
-            <swiper-item>
-                <view class="swiper-item uni-bg-red">B</view>
+            <swiper-item v-for="(item,index) in items" :key="index">
+                <view class="swiper-item">{{item}}</view>
             </swiper-item>
         </swiper>
     </view> 
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            items:[
+                "item1",
+                "item2"
+            ]
+        }
+    },
+}
+</script>
+
 <style>
     swiper-item{
         background-color: cyan;

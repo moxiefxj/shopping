@@ -1,17 +1,23 @@
 <template>
     <view >
         <!--搜索框  -->
-        <uni-search-bar @confirm="search"></uni-search-bar>
+        <van-search
+            shape="round"
+            background="#4fc08d"
+            placeholder="请输入搜索关键词"
+            @search="search"
+        />
         <!-- 导航栏 -->
-        <ms-tabs :list="itemBar" v-model="active2" itemColor="#03A9F4" lineColor="#03A9F4" >
-        </ms-tabs>
-        <view id = "listArea">
-            <product-view :productlist = "productlist" :isSearch = "isSearch"></product-view>
-        </view>
-        
-        <!-- 内容 -->
-        
-          
+        <van-tabs v-model="active" animated  swipeable color="#4fc08d" sticky="true">
+            <van-tab v-for="(item,index) in itemBar"  :key="index" :title="item.title">
+                <view id = "listArea" v-if="!isSearch">
+                    <product-view :productlist = "productlist"></product-view>
+                </view>
+                <view v-else>
+                    <search-view :productlist = "productlist"></search-view>
+                </view>
+            </van-tab>
+        </van-tabs> 
     </view>
 </template>
 
@@ -19,9 +25,10 @@
 <script>
 import uniSearchBar from '@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar.vue';
 import productView from '../../index//product/product.vue'
+import searchView from '../../index//product/search.vue'
 import msTabs from '@/components/ms_tabs.vue'
 export default {
-    components: {uniSearchBar,productView,msTabs},
+    components: {uniSearchBar,productView,msTabs,searchView},
     data() {
         return {
             itemBar:[
@@ -40,8 +47,7 @@ export default {
                     title:"图书"
                 }
             ],
-            active2:0,
-            isSearch:false,
+            active:0,
             productlist:[],
             categories:"",
             screenHeight:0,
@@ -51,15 +57,18 @@ export default {
             next_page_url:'',
         }
     },
+    onPullDownRefresh() {
+        this.setProductlist(this.active) 
+    },
     onLoad(){
         this.screenHeight = uni.getSystemInfoSync().screenHeight
     },
     beforeMount() {
-        this.setProductlist(this.active2) 
+        this.setProductlist(this.active) 
     },
 	methods: {
-        setProductlist:function(active2){
-            switch (active2) {
+        setProductlist:function(active){
+            switch (active) {
                 case 0:
                     this.categories = "all"
                     break;  // 全部的查询
@@ -128,6 +137,7 @@ export default {
             query.select("#listArea").boundingClientRect(data => {
                 let height_t = data.height;
                 if(this.bottomDistinct >= this.height - this.screenHeight - scrollTop && this.height != height_t){
+                    // uni.showNavigationBarLoading()
                     this.isLoading = true
                     this.height = height_t
                     setTimeout( ()=>{
@@ -156,28 +166,36 @@ export default {
             }).catch( res => {
                 console.log(res)
             })  
-        },
+        }, 
         search:function(e){
             this.$uniRequest.post('/BusinessSearch',{
-                key_word : e.value
+                key_word : e.detail
             }).then( res => {
-                console.log("搜索结果：")
-                console.log(res)
-                this.productlist = res.data.data 
-                this.next_page_url = res.data.next_page_url
-                this.isSearch = true
+                this.searchDetail(res.data)
                 // 修改iamge路径
+                
+            })
+        } ,
+        searchDetail:function(data){
+            if(data.data.length == 0){
+                // 跳转什么都没有的页面
+                this.productlist = null
+                this.next_page_url = null
+            }
+            else{
+                this.productlist = data.data 
+                this.next_page_url = data.next_page_url
                 this.productlist.forEach(element => {
                     element.cover_img = this.$imageUrl + element.cover_img 
                 });
-            })
-        }   
+            }
+        } 
 
     },
     watch: {
-        active2(ol,val){
+        active(ol,val){
             if(ol !== val){
-                this.setProductlist(ol)
+                this.setProductlist(ol.detail.index)
             }
         }
     },

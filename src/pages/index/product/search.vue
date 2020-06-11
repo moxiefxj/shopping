@@ -1,24 +1,18 @@
 <template>
-    <!-- 主页产品页 -->
-    <view>
-        <!-- 轮播图 -->
-        <!-- <banner-com></banner-com> -->
-        <!-- 产品卡片 -->
+    <view v-if="productlist != null">
         <view class="productCard" v-for="(item, index) in productlist" :key="index"  @tap="detailProduct(item.id)">
             <product-com :item = "item"></product-com>
         </view>
     </view>
+    <view v-else>
+        <text>未找到</text>
+    </view>
+
 </template>
 
 <script>
-import bannerCom from '../../../components/bannerCom'
-import productCom from '../../../components/productCom.vue';
 export default {
-    components:{
-        bannerCom,
-        productCom
-    },
-    props:['productlist'],
+    props:["productlist"],
     methods: {
         detailProduct:function(id){
             console.log(id)
@@ -39,14 +33,3 @@ export default {
     },
 }
 </script>
-
-<style>
-    .productCard{
-        width: 350rpx;
-        height: 500rpx;
-        margin: 10rpx;
-        background-color: #FFFFFF;
-        display: inline-block;
-        border-radius: 10rpx;
-    }
-</style>

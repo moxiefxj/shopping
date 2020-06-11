@@ -102,7 +102,7 @@ export default {
     .changePwdPane{
         width: 600rpx;
         height: 700rpx;
-        background-color: darkkhaki;
+        background-color: #4fc08d;
         margin: 200rpx auto;
         padding: 50rpx 0;
         border-radius: 20rpx;

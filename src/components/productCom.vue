@@ -1,4 +1,5 @@
 <template>
+
     <!-- 商品卡片 -->
     <view class="productCard">
         <!-- 商品图片 -->

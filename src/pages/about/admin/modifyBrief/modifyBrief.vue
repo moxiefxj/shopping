@@ -1,18 +1,18 @@
 <template>
-    <view>
-        <form>
+    <view class="changeBriefPane">
+        <form class="form">
             <!-- 简介标题 -->
             <view class="formItem">
                 <label>简介标题</label>
-                <input class="title" v-model="formData.title" type="text">
+                <input class="title" v-model="formData.title" type="text" placeholder="请输入简介标题">
             </view>
             <!-- 简介详情 -->
-            <view>
+            <view class="formItem">
                 <label>简介详情</label>
-                <textarea class="xiangqing" v-model="formData.content"></textarea>
+                <textarea class="xiangqing" v-model="formData.content" maxlength="150" adjust-position="false" placeholder="请输入简介详情"></textarea>
             </view>
             <view class="formItem">
-                <button  @click="UpdateInformation">确定</button>
+                <button  @click="UpdateInformation" type="primary">确定</button>
             </view>
         </form>
     </view>
@@ -26,7 +26,7 @@ export default {
                 title:'',
                 content:'',
                 u_id:""
-            },
+            }
         }
     },
     beforeMount(){
@@ -60,15 +60,31 @@ export default {
 </script>
 
 <style scoped>
+    .changeBriefPane{
+        width: 600rpx;
+        height: 700rpx;
+        background-color: #4fc08d;
+        margin: 200rpx auto;
+        padding: 50rpx 0;
+        border-radius: 20rpx;
+    }
+    .form{
+        margin: 30rpx 0;
+    }
     .title{
-        border:2rpx solid red;
+        border: 8rpx solid green;
+        margin-left: 50rpx;
+        border-radius: 20rpx;
+        padding-left: 20rpx;
     }
     .xiangqing{
-        border:2rpx solid red;
-        width: 700rpx;
+        border:8rpx solid greenyellow;
         margin: 20rpx;
+        border-radius: 20rpx;
+        padding: 30rpx;
+        width: 80%;
     }
     .formItem{
-        display: flex;
+        display: block;
     }
 </style>

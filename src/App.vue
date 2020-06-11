@@ -30,6 +30,8 @@
 
 <style>
 	@import './common/uni.css';
+
+	@import '/wxcomponents/vant/dist/common/index.wxss';
 	
 	@font-face {
 		font-family: 'iconfont';  /* project id 1849618 */
