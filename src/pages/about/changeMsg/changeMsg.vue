@@ -16,10 +16,6 @@
                     <input type="text" v-model="formRegisterData.tel" placeholder="新手机号" @input="input_tel"/>
                     <icon :type="telV ? 'success':'warn'"></icon>
                 </view>
-                <view class="formItem">
-                    <input type="text" v-model="formRegisterData.VarCode" placeholder="请输入验证码" @input="input_tel"/>
-                    <button type="primary" class="code" @click="getCode">获取验证码</button>
-                </view>
                 <!-- 确定 -->
                 <view class="formItem">
                     <button class="btn_resjister" type="primary" :disabled="!(nameV&&telV)" @click="confirm">确定</button>
@@ -37,7 +33,6 @@ export default {
                 id:"",
                 name:"",
                 tel:"",
-                VarCode:''
             },
             email:"",
             nameV:false,
@@ -83,15 +78,6 @@ export default {
                 }
             })
                     
-        },
-        getCode:function(){
-            this.$uniRequest.post('/VarCodeSend',{
-                email:this.email
-            }).then( res => {
-                console.log(res)
-            }).catch( res => {
-                console.log(res)
-            })
         }
         
     },

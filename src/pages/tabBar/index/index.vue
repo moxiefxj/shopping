@@ -168,27 +168,9 @@ export default {
             })  
         }, 
         search:function(e){
-            this.$uniRequest.post('/BusinessSearch',{
-                key_word : e.detail
-            }).then( res => {
-                this.searchDetail(res.data)
-                // 修改iamge路径
-                
-            })
-        } ,
-        searchDetail:function(data){
-            if(data.data.length == 0){
-                // 跳转什么都没有的页面
-                this.productlist = null
-                this.next_page_url = null
-            }
-            else{
-                this.productlist = data.data 
-                this.next_page_url = data.next_page_url
-                this.productlist.forEach(element => {
-                    element.cover_img = this.$imageUrl + element.cover_img 
-                });
-            }
+            uni.navigateTo({
+                 url: '/pages/index/product/search?data='+e.detail
+            });
         } 
 
     },

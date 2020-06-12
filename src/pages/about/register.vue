@@ -1,6 +1,5 @@
 <template>
     <view>
-        <image class="header"/>
         <view class="registerPane">
             <form class="form">
                 <!-- email -->
@@ -125,19 +124,11 @@ export default {
 </script>
 
 <style>
-    .header{
-        background-color: darkgreen;
-        width: 200rpx;
-        height: 200rpx;
-        border-radius: 100%;
-        display: block;
-        margin: 50rpx auto;
-    }
     .registerPane{
         width: 600rpx;
         height: 700rpx;
-        background-color: darkkhaki;
-        margin: 0 auto;
+        background-color: #4fc08d;
+        margin: 160rpx auto;
         padding: 50rpx 0;
         border-radius: 20rpx;
     }

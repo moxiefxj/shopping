@@ -133,7 +133,7 @@ export default {
         },
         toModifyPwd(){
             uni.navigateTo({
-                url: '/pages/about/changePwd/changePwd'
+                url: '/pages/about/forgetPwd/forgetPwd'
             });
         }
     },

@@ -118,7 +118,7 @@ export default {
         font-weight: bold;
     }
     .detail .description{
-        margin: 10rpx 0;
+        margin: 34rpx 0;
         padding-left: 20rpx;
         font-size: 30rpx;
     }

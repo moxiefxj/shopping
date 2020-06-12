@@ -5,7 +5,7 @@
         </view>
     </view>
     <view v-else>
-        <text>没有订单</text>
+        <image src = 'https://cdn.u1.huluxia.com/g4/M02/68/D4/rBAAdl7iSuGARdnVAABpsuzGBBY43.jpeg' />
     </view>
 </template>
 
@@ -139,7 +139,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
     .goods-card {
     margin: 0;
     background-color: white;
@@ -147,5 +147,11 @@ export default {
 
   .delete-button {
     height: 100%;
+  }
+  image{
+    width: 100%;
+    height: 705rpx;
+    margin-top: 170rpx;
+
   }
 </style>

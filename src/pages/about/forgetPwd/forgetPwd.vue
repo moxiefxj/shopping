@@ -1,15 +1,16 @@
 <template>
     <view>
-        <view class="changePwdPane">
+        <view class="forgetPwdPane">
             <form class="form">
                 <!-- email -->
                 <view class="formItem">
-                    <input type="text" id="res_email" v-model="email" disabled @input="input_email" placeholder="请输入email"/>
+                    <input type="text" id="res_email" v-model="formChangeData.email" @input="input_email" placeholder="请输入email"/>
+                    <icon :type="emailV ? 'success':'warn'"></icon>
                 </view>
-                <!-- password -->
+                <!-- 验证码 -->
                 <view class="formItem">
-                    <input type="password" id="res_pwd" v-model="formChangeData.password" placeholder="请输入密码" @input="input_pwd"/>
-                    <icon :type="pwdV ? 'success':'warn'"></icon>
+                    <input type="text" v-model="formChangeData.VarCode" placeholder="请输入验证码"/>
+                    <button type="primary" class="code" @click="getCode">获取验证码</button>
                 </view>
                 <!-- 确定 -->
                 <view class="formItem">
@@ -25,28 +26,23 @@ export default {
     data() {
         return {
             formChangeData:{
-                id:"",
-                password:""
+                email:"",
+                VarCode:''
             },
+            emailV:false,
             pwdV:false,
-            email:""
         }
     },
-    beforeMount() {
-        let userInfo = this.$store.state.userInfo
-        this.formChangeData.id = userInfo.id
-        this.email = userInfo.email
-    },
     methods:{
-        input_pwd:function(){
+        input_email:function(){
             setTimeout(() => {
-                // 判断密码
-                this.pwdV = this.formChangeData.password.length <= 16 && this.formChangeData.password.length >=6
+                // 判断email
+                this.emailV = this.formChangeData.email.length <= 20 && this.formChangeData.email.length >5
             },300)
         },
         comfirm:function(){
             console.log(this.formChangeData)
-            this.$uniRequest.post('/UpdatePassword',{
+            this.$uniRequest.post('/FindBackPassword',{
                 ...this.formChangeData
             }).then( res => {
                 if(res.data.success){
@@ -69,12 +65,29 @@ export default {
             })
                     
         },
+        getCode:function(){
+            if(this.emailV){
+                this.$uniRequest.post('/VarCodeSend',{
+                    email:this.formChangeData.email
+                }).then( res => {
+                    console.log(res)
+                }).catch( res => {
+                    console.log(res)
+                })
+            }else{
+                uni.showToast({
+                    title: 'email输入有误',
+                    duration: 2000,
+                    icon:'none'
+                });
+            }
+        }
     },
 }
 </script>
 
 <style>
-    .changePwdPane{
+    .forgetPwdPane{
         width: 600rpx;
         height: 700rpx;
         background-color: #4fc08d;

@@ -91,6 +91,11 @@
 			"style":{
 				"navigationBarTitleText":"注册"
 			}
+		},{
+			"path":"pages/about/forgetPwd/forgetPwd",
+			"style":{
+				"navigationBarTitleText":"忘记密码"
+			}
 		}
 
 	],

@@ -72,16 +72,16 @@ export default {
         margin: 30rpx 0;
     }
     .title{
-        border: 8rpx solid green;
+        border: 2rpx solid green;
         margin-left: 50rpx;
         border-radius: 20rpx;
         padding-left: 20rpx;
     }
     .xiangqing{
-        border:8rpx solid greenyellow;
+        border:2rpx solid green;
         margin: 20rpx;
         border-radius: 20rpx;
-        padding: 30rpx;
+        padding: 10rpx;
         width: 80%;
     }
     .formItem{
